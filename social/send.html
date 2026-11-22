@@ -1,0 +1,8 @@
+<!DOCTYPE html><meta charset="utf-8"><title>Sending image</title><p id="s">Sending…</p>
+<script>
+const f=new URLSearchParams(location.search).get('f')||'profile.jpg';
+fetch(f+'?v='+Date.now()).then(r=>r.blob()).then(b=>{
+  if(window.opener){window.opener.postMessage({raynorImg:f,blob:b},'https://www.facebook.com');document.getElementById('s').textContent='Sent '+f+' ('+b.size+')';setTimeout(()=>window.close(),1500);}
+  else document.getElementById('s').textContent='No opener';
+});
+</script>
