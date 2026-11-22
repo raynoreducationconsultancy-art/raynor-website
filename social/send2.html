@@ -1,0 +1,5 @@
+<!DOCTYPE html><meta charset="utf-8"><title>img</title>
+<script>
+const f=new URLSearchParams(location.search).get('f')||'profile.jpg';
+fetch(f+'?v='+Date.now()).then(r=>r.blob()).then(b=>{(window.parent!==window?window.parent:window.opener).postMessage({raynorImg:f,blob:b},'*');});
+</script>
